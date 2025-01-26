@@ -9,5 +9,5 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: RigidBody2D) -> void:
 	if body == player:
+		player.queue_free()
 		mainUI.gameOver()
-		get_tree().quit()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc8v8mwusfupv"]
+[gd_scene load_steps=6 format=3 uid="uid://cc8v8mwusfupv"]
 
 [ext_resource type="Script" path="res://src/MainUI.gd" id="1_0om4u"]
 [ext_resource type="Texture2D" uid="uid://bhrnfs1q8v02l" path="res://gfx/bublinko/happy.png" id="2_gqxed"]
 [ext_resource type="FontFile" uid="uid://dvwsl4rd8e5rt" path="res://gfx/fonts/SuperBakery.ttf" id="3_hxwla"]
+[ext_resource type="Texture2D" uid="uid://cdwr1ntlni2bw" path="res://gfx/buttons/Green.png" id="4_g6q2k"]
 [ext_resource type="AudioStream" uid="uid://cjkbwh85rsdw0" path="res://sfx/music/groovy.ogg" id="4_wni5l"]
 
 [node name="MainUI" type="Control"]
@@ -94,7 +95,70 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
+[node name="GameOverContainer" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -256.0
+offset_right = 320.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouWin" type="Label" parent="GameOverContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 84
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalScore" type="Label" parent="GameOverContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 56
+text = "Final Score: "
+vertical_alignment = 1
+
+[node name="FinalTime" type="Label" parent="GameOverContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 56
+text = "Time: "
+vertical_alignment = 1
+
+[node name="Play" type="TextureRect" parent="GameOverContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.8, 0.8, 0.8, 1)
+custom_minimum_size = Vector2(0, 110)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("4_g6q2k")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="GameOverContainer/Play"]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 111.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 54
+text = "PLAY AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Fader" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,5 +186,8 @@ parameters/looping = true
 [node name="BublinkoSpeechIntro" type="AudioStreamPlayer" parent="."]
 
 [connection signal="timeout" from="BublinkoContainer/Bublinko/RotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="gui_input" from="GameOverContainer/Play" to="." method="_on_play_gui_input"]
+[connection signal="mouse_entered" from="GameOverContainer/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="mouse_exited" from="GameOverContainer/Play" to="." method="_on_play_mouse_exited"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="IntroPhraseTimer" to="." method="_on_intro_phrase_timer_timeout"]

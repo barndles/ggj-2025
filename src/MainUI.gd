@@ -1,5 +1,6 @@
 extends Control
 
+@onready var level: Node2D = get_tree().get_root().get_node("Level-1")
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var intro: bool = true
@@ -165,4 +166,34 @@ func playerEscape() -> void: # if player escapes the board
 	get_tree().quit()
 
 func gameOver() -> void:
-	pass
+	level.get_node("Pins/Cursor").visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	$GameTimer.stop()
+	$Score.visible = false
+	$Timer.visible = false
+	%BublinkoText.visible = false
+	%FinalScore.text = "Final Score: " + str(score)
+	%FinalTime.text = "Final Time: " + str(minute) + ":" + str(second)
+	$GameOverContainer.visible = true
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property($GameOverContainer, "modulate", Color(1, 1, 1, 1), 5)
+	await tween.finished
+
+func _on_play_mouse_entered() -> void:
+	%Play.self_modulate = Color(1, 1, 1, 1)
+
+func _on_play_mouse_exited() -> void:
+	%Play.self_modulate = Color(0.8, 0.8, 0.8, 1)
+
+func _on_play_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == 1:
+			if event.pressed:
+				%Play.self_modulate = Color(0.6, 0.6, 0.6, 1)
+			else:
+				_on_play_mouse_exited()
+				$Fader.visible = true
+				var tween: Tween = get_tree().create_tween()
+				tween.tween_property($Fader, "color", Color(0, 0, 0, 1), 1)
+				await tween.finished
+				get_tree().reload_current_scene()
