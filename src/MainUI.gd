@@ -15,11 +15,10 @@ var minute: int = 0
 var bublinkoIntroPhrases: Array[Array] = [
 	["Welcome to MR BUBLINKO'S BIG BEAUTIFUL PACHINKO BALLAPALOOZA.", 2],
 	["My name is Mr. Bublinko, and I am your friendly neighborhood bubble man.", 3],
-	["That little ball is you. Don’t stress yourself out about it. If the ball goes in a direction you don’t like, shake your mouse to send it the other way.", 3],
+	["That little ball is you. Don’t stress yourself out about it. If the ball goes in a direction you don’t like, shake your mouse to send it the other direction.", 3],
 	["See those balloon animals? Don’t touch those, or you’ll lose points.", 3],
 	["Like, please, don’t touch them.", 1],
-	["There are a few power-ups too, those are for you to figure out what they do.", 3],
-	["Again, don’t touch the balloon animals.", 2]
+	["There are a few power-ups too, those are for you to figure out what they do.", 3]
 ]
 
 var bublinkoInterrupted: Array[Array] = [
@@ -45,6 +44,15 @@ var bublinkoCollect: Array[Array] = [
 	["I’m warning you, if you continue to touch those balloon animals, there are going to be consequences.", 3],
 	["Were instructions not clear enough to you? What did you not understand?? DON'T TOUCH THE BALLOON ANIMALS!", 3],
 	["COME ON MAN! YOU ARE CLEARLY NOT LISTENING! I’M TIRED OF WARNING YOU! ENOUGH!", 3]
+]
+
+var introSpeech: Array = [
+	load("res://sfx/bablinko/high/Welcome.ogg"),
+	load("res://sfx/bablinko/high/MyNameIs.ogg"),
+	load("res://sfx/bablinko/high/ThatsYou.ogg"),
+	load("res://sfx/bablinko/high/SeeThoseBalloonAnimals.ogg"),
+	load("res://sfx/bablinko/high/LikePlease.ogg"),
+	load("res://sfx/bablinko/high/PowerUps.ogg"),
 ]
 
 var speechDict: Dictionary = {
@@ -117,11 +125,11 @@ func _on_intro_phrase_timer_timeout() -> void:
 func bublinkoSpeak(phrase: Array) -> void:
 	var tween = create_tween()
 	if intro:
-		print($BublinkoSpeechIntro.get_stream().get_length())
+		$BublinkoSpeechIntro.set_stream(introSpeech[introCount])
+		$BublinkoSpeechIntro.play()
 		tween.tween_method(bublinkoText, "", phrase[0], $BublinkoSpeechIntro.get_stream().get_length())
-		await tween.finished
 		if not interrupted:
-			$IntroPhraseTimer.start()
+			$IntroPhraseTimer.start($BublinkoSpeechIntro.get_stream().get_length() + 1)
 	else:
 		if bublinkoCollect.size() - 1 >= bublinkoAnger:
 			speaking = true
@@ -129,14 +137,14 @@ func bublinkoSpeak(phrase: Array) -> void:
 			$BublinkoSpeech.set_stream(speechDict[bublinkoAnger])
 			$BublinkoSpeech.play()
 			tween.tween_method(bublinkoText, "", bublinkoCollect[bublinkoAnger][0], $BublinkoSpeech.get_stream().get_length())
-			tween.tween_method(bublinkoText, "", bublinkoCollect[bublinkoAnger][0], phrase[1])
+			#tween.tween_method(bublinkoText, "", bublinkoCollect[bublinkoAnger][0], phrase[1])
 			$BublinkoSpeechIntro.stop()
 			$BublinkoSpeech.set_stream(speechDict[bublinkoAnger])
 			$BublinkoSpeech.play()
 			%Bublinko.set_texture(emotes[bublinkoAnger])
 			await tween.finished
 			speaking = false
-	await get_tree().create_timer(5).timeout
+	#await get_tree().create_timer(5).timeout
 	if not speaking:
 		%BublinkoText.text = ""
 

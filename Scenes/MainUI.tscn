@@ -1,26 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc8v8mwusfupv"]
+[gd_scene load_steps=5 format=3 uid="uid://cc8v8mwusfupv"]
 
 [ext_resource type="Script" path="res://src/MainUI.gd" id="1_0om4u"]
 [ext_resource type="Texture2D" uid="uid://bhrnfs1q8v02l" path="res://gfx/bublinko/happy.png" id="2_gqxed"]
 [ext_resource type="FontFile" uid="uid://dvwsl4rd8e5rt" path="res://gfx/fonts/SuperBakery.ttf" id="3_hxwla"]
 [ext_resource type="AudioStream" uid="uid://cjkbwh85rsdw0" path="res://sfx/music/groovy.ogg" id="4_wni5l"]
-[ext_resource type="AudioStream" uid="uid://bj1k5qqmaxo3l" path="res://sfx/bablinko/high/Welcome.ogg" id="12_wtyll"]
-[ext_resource type="AudioStream" uid="uid://dnho1bnaqsxlm" path="res://sfx/bablinko/high/MyNameIs.ogg" id="13_mk2v8"]
-[ext_resource type="AudioStream" uid="uid://cdiy8rabc8e43" path="res://sfx/bablinko/high/ThatsYou.ogg" id="14_168aw"]
-[ext_resource type="AudioStream" uid="uid://ddcge1ywn1qdp" path="res://sfx/bablinko/high/SeeThoseBalloonAnimals.ogg" id="15_yuk7j"]
-[ext_resource type="AudioStream" uid="uid://dlkwfcvjkm1jg" path="res://sfx/bablinko/high/LikePlease.ogg" id="16_jx8a2"]
-[ext_resource type="AudioStream" uid="uid://celep5cifckgc" path="res://sfx/bablinko/high/PowerUps.ogg" id="17_tdjyk"]
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_tw7dw"]
-loop = false
-fade_time = 0.0
-stream_count = 7
-stream_0 = ExtResource("12_wtyll")
-stream_1 = ExtResource("13_mk2v8")
-stream_2 = ExtResource("14_168aw")
-stream_3 = ExtResource("15_yuk7j")
-stream_4 = ExtResource("16_jx8a2")
-stream_5 = ExtResource("17_tdjyk")
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -137,7 +120,6 @@ parameters/looping = true
 [node name="BublinkoSpeech" type="AudioStreamPlayer" parent="."]
 
 [node name="BublinkoSpeechIntro" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamPlaylist_tw7dw")
 
 [connection signal="timeout" from="BublinkoContainer/Bublinko/RotateTimer" to="." method="_on_rotate_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
