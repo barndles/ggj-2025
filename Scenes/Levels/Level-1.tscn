@@ -36,6 +36,8 @@ script = ExtResource("1_6uok5")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MainUI" parent="CanvasLayer" instance=ExtResource("1_vcbb5")]
+offset_left = 2.0
+offset_right = 2.0
 
 [node name="LeftBorder" type="Sprite2D" parent="."]
 position = Vector2(18, 2573.5)

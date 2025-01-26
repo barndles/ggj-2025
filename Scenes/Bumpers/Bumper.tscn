@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d18dtbptju8jk"]
+[gd_scene load_steps=11 format=3 uid="uid://d18dtbptju8jk"]
 
 [ext_resource type="Script" path="res://Scenes/Bumpers/bumper.gd" id="1_ffb7g"]
 [ext_resource type="Texture2D" uid="uid://ebif31bmap1f" path="res://Art/Entities/Bumper.png" id="2_3he4v"]
 [ext_resource type="Texture2D" uid="uid://lg5geo84dl2q" path="res://Art/Entities/Bumpers/space_bumper.png" id="2_5rb13"]
 [ext_resource type="Texture2D" uid="uid://bwfioaf2b2fes" path="res://Art/Entities/Bumpers/Cloud_Bumper.png" id="3_3h215"]
+[ext_resource type="Texture2D" uid="uid://b0ha5vj5hivyd" path="res://Art/Entities/Bumpers/forest_bumper.png" id="4_fxbal"]
 [ext_resource type="Texture2D" uid="uid://c7qq70w453q0b" path="res://Art/Entities/Bumpers/hell_bumper.png" id="4_sxxki"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw2aa"]
@@ -72,7 +73,7 @@ _data = {
 
 [node name="Bumper" type="Node2D"]
 script = ExtResource("1_ffb7g")
-sprite_textures = Array[Texture2D]([ExtResource("2_5rb13"), ExtResource("3_3h215"), ExtResource("2_5rb13"), ExtResource("4_sxxki")])
+sprite_textures = Array[Texture2D]([ExtResource("2_5rb13"), ExtResource("3_3h215"), ExtResource("4_fxbal"), ExtResource("4_sxxki")])
 
 [node name="Area2D" type="Area2D" parent="."]
 
