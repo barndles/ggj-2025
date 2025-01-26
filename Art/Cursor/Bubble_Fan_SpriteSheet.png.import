@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cngs1yk3h8plv"
-path="res://.godot/imported/Mr. Bublinko's Big Beautiful Pachinko Ballapalooza.icon.png-e8832a0aacdbc4e8f3867214e289918c.ctex"
+path="res://.godot/imported/Bubble_Fan_SpriteSheet.png-4e1e822338a82dfbfa53c94c9eb68a11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Builds/Mr. Bublinko's Big Beautiful Pachinko Ballapalooza.icon.png"
-dest_files=["res://.godot/imported/Mr. Bublinko's Big Beautiful Pachinko Ballapalooza.icon.png-e8832a0aacdbc4e8f3867214e289918c.ctex"]
+source_file="res://Art/Cursor/Bubble_Fan_SpriteSheet.png"
+dest_files=["res://.godot/imported/Bubble_Fan_SpriteSheet.png-4e1e822338a82dfbfa53c94c9eb68a11.ctex"]
 
 [params]
 
