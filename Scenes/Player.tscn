@@ -21,3 +21,6 @@ shape = SubResource("CircleShape2D_at85y")
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(0.0429687, 0.0429687)
 texture = ExtResource("1_71lud")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true

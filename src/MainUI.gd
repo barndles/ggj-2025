@@ -125,17 +125,14 @@ func bublinkoSpeak(phrase: Array) -> void:
 	else:
 		if bublinkoCollect.size() - 1 >= bublinkoAnger:
 			speaking = true
-<<<<<<< Updated upstream
 			$BublinkoSpeechIntro.stop()
 			$BublinkoSpeech.set_stream(speechDict[bublinkoAnger])
 			$BublinkoSpeech.play()
 			tween.tween_method(bublinkoText, "", bublinkoCollect[bublinkoAnger][0], $BublinkoSpeech.get_stream().get_length())
-=======
 			tween.tween_method(bublinkoText, "", bublinkoCollect[bublinkoAnger][0], phrase[1])
 			$BublinkoSpeechIntro.stop()
 			$BublinkoSpeech.set_stream(speechDict[bublinkoAnger])
 			$BublinkoSpeech.play()
->>>>>>> Stashed changes
 			%Bublinko.set_texture(emotes[bublinkoAnger])
 			await tween.finished
 			speaking = false

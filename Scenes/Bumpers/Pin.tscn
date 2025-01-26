@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://knhp2fywyv4m" path="res://Art/Entities/hell_pin.png" id="2_wmlca"]
 [ext_resource type="Texture2D" uid="uid://cipjxfx5siw4p" path="res://Art/Entities/sun_pin.png" id="3_iakgv"]
 [ext_resource type="Texture2D" uid="uid://ntvwrpsff4hk" path="res://Art/Entities/forest_pin.png" id="4_gy67j"]
-[ext_resource type="Texture2D" uid="uid://4pw45nf83r62" path="res://Art/Entities/water_pin.png" id="4_imdfi"]
+[ext_resource type="Texture2D" uid="uid://dkw3ncjqenrb8" path="res://Art/Entities/water_pin.png" id="4_imdfi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd06c"]
 radius = 18.0278

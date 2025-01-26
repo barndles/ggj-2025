@@ -1,20 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://dc3j61puojuf3"]
 
-[ext_resource type="Texture2D" uid="uid://bdjs21lwll5x4" path="res://Art/Background/BG_12.png" id="1_f6wuw"]
+[ext_resource type="Texture2D" uid="uid://bfvrsw35aq80e" path="res://Art/Background/BG_12.png" id="1_f6wuw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ttpvr"]
 bounce = 162.75
 absorbent = true
 
 [node name="StaticBody2D3" type="StaticBody2D"]
-position = Vector2(-33.5714, 130.714)
 scale = Vector2(0.871365, 1.00438)
 physics_material_override = SubResource("PhysicsMaterial_ttpvr")
 
-[node name="BG_15" type="Sprite2D" parent="."]
-position = Vector2(0, 0.000488281)
-texture = ExtResource("1_f6wuw")
-
 [node name="Collider" type="CollisionPolygon2D" parent="."]
-position = Vector2(8.68913, -4756.88)
+position = Vector2(0, -7.96511)
 polygon = PackedVector2Array(65.4146, -25.8862, 90.6624, -25.8862, 78.0385, 1.9917, 59.6765, 23.8955, 29.8382, 39.8257, -1.14762, 44.8042, -25.2477, 41.8169, -45.905, 34.8477, -65.4146, 18.9175, -81.4814, 3.98291, -87.2195, -9.95605, -88.3671, -18.917, -65.4146, -19.9126, -61.9717, -8.96045, -48.2002, 8.96094, -33.2811, 18.9175, -11.4762, 22.8999, 11.4762, 23.8955, 26.3954, 19.9131, 40.1669, 10.9521, 51.6431, -0.995605, 61.9717, -14.9346)
+
+[node name="BG_15" type="Sprite2D" parent="."]
+texture = ExtResource("1_f6wuw")
