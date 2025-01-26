@@ -24,3 +24,4 @@ texture = ExtResource("1_71lud")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+position_smoothing_speed = 20.0
