@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://po8yex8gsy5p"]
 
 [ext_resource type="Script" path="res://Scenes/Bumpers/pin.gd" id="1_ajidx"]
-[ext_resource type="Texture2D" uid="uid://beyvngridvxwo" path="res://Art/Entities/Pin.png" id="1_e5ei8"]
 [ext_resource type="Texture2D" uid="uid://knhp2fywyv4m" path="res://Art/Entities/hell_pin.png" id="2_wmlca"]
 [ext_resource type="Texture2D" uid="uid://cipjxfx5siw4p" path="res://Art/Entities/sun_pin.png" id="3_iakgv"]
 [ext_resource type="Texture2D" uid="uid://ntvwrpsff4hk" path="res://Art/Entities/forest_pin.png" id="4_gy67j"]
 [ext_resource type="Texture2D" uid="uid://dkw3ncjqenrb8" path="res://Art/Entities/water_pin.png" id="4_imdfi"]
+[ext_resource type="AudioStream" uid="uid://cns58b6iw3nc" path="res://sfx/sfx/Bumper.ogg" id="6_5vhdm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd06c"]
 radius = 18.0278
@@ -83,7 +83,6 @@ shape = SubResource("CircleShape2D_nd06c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.0830078, 0.0830078)
-texture = ExtResource("1_e5ei8")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -95,4 +94,12 @@ libraries = {
 "": SubResource("AnimationLibrary_w6juj")
 }
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_5vhdm")
+pitch_scale = 1.25
+
+[node name="StartTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
