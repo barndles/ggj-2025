@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @export_enum("Space", "Sky", "Forest", "Hell") var pin_type:int
 @export var sprite_textures:Array[Texture2D]
@@ -11,6 +12,8 @@ extends Node2D
 @onready var level: Node2D = get_tree().get_root().get_node("Level-1")
 @onready var mainUI: Control = level.get_node("CanvasLayer/MainUI")
 @onready var player: RigidBody2D = level.get_node("Player")
+
+var sound: bool = false
 
 var launch_angle = Vector2(0,0)
 var launch_vector = Vector2(0,0)
@@ -38,6 +41,11 @@ func _on_area_2d_body_entered(body: RigidBody2D) -> void:
 	else:
 		print(launch_vector)
 		body.apply_impulse(launch_vector)
+		if sound:
+			$Sound.pitch_scale = random.randf_range(0.75, 1.25)
+			$Sound.play()
 		mainUI.score += 10
 		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
-	
+
+func _on_start_timer_timeout() -> void:
+	sound = true

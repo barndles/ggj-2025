@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d18dtbptju8jk"]
+[gd_scene load_steps=12 format=3 uid="uid://d18dtbptju8jk"]
 
 [ext_resource type="Script" path="res://Scenes/Bumpers/bumper.gd" id="1_ffb7g"]
 [ext_resource type="Texture2D" uid="uid://ebif31bmap1f" path="res://Art/Entities/Bumper.png" id="2_3he4v"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwfioaf2b2fes" path="res://Art/Entities/Bumpers/Cloud_Bumper.png" id="3_3h215"]
 [ext_resource type="Texture2D" uid="uid://b0ha5vj5hivyd" path="res://Art/Entities/Bumpers/forest_bumper.png" id="4_fxbal"]
 [ext_resource type="Texture2D" uid="uid://c7qq70w453q0b" path="res://Art/Entities/Bumpers/hell_bumper.png" id="4_sxxki"]
+[ext_resource type="AudioStream" uid="uid://cns58b6iw3nc" path="res://sfx/sfx/Bumper.ogg" id="6_by28a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw2aa"]
 radius = 36.2215
@@ -89,4 +90,12 @@ libraries = {
 "": SubResource("AnimationLibrary_gld63")
 }
 
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_by28a")
+pitch_scale = 1.25
+
+[node name="StartTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

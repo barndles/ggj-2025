@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cipjxfx5siw4p" path="res://Art/Entities/sun_pin.png" id="3_iakgv"]
 [ext_resource type="Texture2D" uid="uid://ntvwrpsff4hk" path="res://Art/Entities/forest_pin.png" id="4_gy67j"]
 [ext_resource type="Texture2D" uid="uid://dkw3ncjqenrb8" path="res://Art/Entities/water_pin.png" id="4_imdfi"]
-[ext_resource type="AudioStream" uid="uid://cns58b6iw3nc" path="res://sfx/sfx/Bumper.ogg" id="6_5vhdm"]
+[ext_resource type="AudioStream" uid="uid://cab4manfkn5nq" path="res://sfx/sfx/Knock.ogg" id="6_k6b8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nd06c"]
 radius = 18.0278
@@ -95,7 +95,7 @@ libraries = {
 }
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_5vhdm")
+stream = ExtResource("6_k6b8l")
 pitch_scale = 1.25
 
 [node name="StartTimer" type="Timer" parent="."]
