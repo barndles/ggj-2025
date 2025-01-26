@@ -78,6 +78,7 @@ var emotes: Array = [
 ]
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	RenderingServer.set_default_clear_color(Color(0, 0, 0, 1))
 	call_deferred("pivotFix")
 	var tween1: Tween = get_tree().create_tween()

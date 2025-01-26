@@ -33,18 +33,18 @@ func _on_body_entered(body: RigidBody2D) -> void:
 		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
 		$Pop.pitch_scale = random.randf_range(0.75, 1.25)
 		$Pop.play()
+		var finalRotate: Array = [20, -20]
+		var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_parallel(true)
+		tween.tween_property($Sprite2D, "rotation_degrees", finalRotate.pick_random(), 0.5)
+		tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1, 0), 0.5)
+		tween.tween_property($Sprite2D, "scale", Vector2(0.15, 0.15), 0.5)
+		mainUI.score += 10
+		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
 		await get_tree().create_timer(0.25).timeout
 		if not mainUI.interrupted:
 			mainUI.introInterrupt()
 		else:
 			mainUI.bublinkoSpeak(mainUI.bublinkoCollect.pick_random())
 		mainUI.bublinkoAnger += 1
-		mainUI.score += 10
-		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
-		var finalRotate: Array = [20, -20]
-		var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_parallel(true)
-		tween.tween_property($Sprite2D, "rotation_degrees", finalRotate.pick_random(), 0.5)
-		tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1, 0), 0.5)
-		tween.tween_property($Sprite2D, "scale", Vector2(0.15, 0.15), 0.5)
 		await tween.finished
 		queue_free()
