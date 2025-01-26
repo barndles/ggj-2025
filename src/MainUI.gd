@@ -9,7 +9,11 @@ var interrupted: bool = false
 var speaking: bool = false
 var bublinkoAnger: int = 0
 
+var escaped: bool = false
+
 var score: int = 0
+var highScore: int = 0
+
 var second: int = 0
 var minute: int = 0
 
@@ -30,9 +34,9 @@ var bublinkoInterrupted: Array[Array] = [
 
 var bublinkoEscaped: Array[Array] = [
 	["Hey, where'd you go?", 1],
-	["Whoa.", 0.25],
+	["Whoa.", 1],
 	["I meant to fix that, sorry.", 1],
-	["Whoops, my bad", 0.25],
+	["Whoops, my bad", 1],
 	["NO STOP YOU'RE GONNA BREAK IT GET BACK HERE NOOOOOOOOOOOO", 2],
 	["Gonna crash this game with NO SURVIVORS", 1]
 ]
@@ -126,6 +130,11 @@ func _on_intro_phrase_timer_timeout() -> void:
 
 func bublinkoSpeak(phrase: Array) -> void:
 	var tween = create_tween()
+	if escaped:
+		$BublinkoSpeechIntro.stop()
+		$BublinkoSpeech.stop()
+		tween.tween_method(bublinkoText, "", phrase[0], phrase[1])
+		return
 	if intro:
 		$BublinkoSpeechIntro.set_stream(introSpeech[introCount])
 		$BublinkoSpeechIntro.play()
@@ -160,6 +169,8 @@ func introInterrupt() -> void: # if player collects animals while bublinko is st
 	bublinkoSpeak(bublinkoInterrupted.pick_random())
 
 func playerEscape() -> void: # if player escapes the board
+	escaped = true
+	$Alarm.play()
 	var phrase: Array = bublinkoEscaped.pick_random()
 	interrupted = true
 	bublinkoSpeak(phrase)
@@ -175,6 +186,9 @@ func gameOver() -> void:
 	%BublinkoText.text = ""
 	%FinalScore.text = "Final Score: " + str(score)
 	%FinalTime.text = "Final Time: " + str("%0*d" % [2, minute]) + ":" + str("%0*d" % [2, second])
+	if score > highScore:
+		highScore = score
+		%HighScore.visible = true
 	$GameOverContainer.visible = true
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property($GameOverContainer, "modulate", Color(1, 1, 1, 1), 5)

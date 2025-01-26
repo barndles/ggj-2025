@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc8v8mwusfupv"]
+[gd_scene load_steps=7 format=3 uid="uid://cc8v8mwusfupv"]
 
 [ext_resource type="Script" path="res://src/MainUI.gd" id="1_0om4u"]
 [ext_resource type="Texture2D" uid="uid://bhrnfs1q8v02l" path="res://gfx/bublinko/happy.png" id="2_gqxed"]
 [ext_resource type="FontFile" uid="uid://dvwsl4rd8e5rt" path="res://gfx/fonts/SuperBakery.ttf" id="3_hxwla"]
 [ext_resource type="Texture2D" uid="uid://cdwr1ntlni2bw" path="res://gfx/buttons/Green.png" id="4_g6q2k"]
 [ext_resource type="AudioStream" uid="uid://cjkbwh85rsdw0" path="res://sfx/music/groovy.ogg" id="4_wni5l"]
+[ext_resource type="AudioStream" uid="uid://cfsumtaogf0rh" path="res://sfx/sfx/Alarm.ogg" id="6_xnow4"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -109,6 +110,7 @@ offset_right = 320.0
 offset_bottom = 256.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="YouWin" type="Label" parent="GameOverContainer"]
 layout_mode = 2
@@ -136,6 +138,16 @@ theme_override_fonts/font = ExtResource("3_hxwla")
 theme_override_font_sizes/font_size = 56
 text = "Time: "
 vertical_alignment = 1
+
+[node name="HighScore" type="RichTextLabel" parent="GameOverContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 8
+bbcode_enabled = true
+text = "[font_size=72][center][font=res://gfx/fonts/SuperBakery.ttf][rainbow freq=2]NEW HIGH SCORE!"
 
 [node name="Play" type="TextureRect" parent="GameOverContainer"]
 unique_name_in_owner = true
@@ -184,6 +196,10 @@ parameters/looping = true
 [node name="BublinkoSpeech" type="AudioStreamPlayer" parent="."]
 
 [node name="BublinkoSpeechIntro" type="AudioStreamPlayer" parent="."]
+
+[node name="Alarm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xnow4")
+pitch_scale = 2.85
 
 [connection signal="timeout" from="BublinkoContainer/Bublinko/RotateTimer" to="." method="_on_rotate_timer_timeout"]
 [connection signal="gui_input" from="GameOverContainer/Play" to="." method="_on_play_gui_input"]

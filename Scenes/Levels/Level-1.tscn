@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://kwq6ink7ngo7"]
+[gd_scene load_steps=28 format=3 uid="uid://kwq6ink7ngo7"]
 
 [ext_resource type="Script" path="res://src/LevelLoad.gd" id="1_6uok5"]
 [ext_resource type="PackedScene" uid="uid://cc8v8mwusfupv" path="res://Scenes/MainUI.tscn" id="1_vcbb5"]
@@ -23,14 +23,17 @@
 [ext_resource type="PackedScene" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
 [ext_resource type="PackedScene" uid="uid://doi6ckl81ijol" path="res://Scenes/Bumpers/HazardBumper.tscn" id="22_eip0o"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8cai"]
-size = Vector2(98.6224, 413.01)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybqlw"]
-size = Vector2(54, 530)
+size = Vector2(54, 592)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4c5vb"]
+size = Vector2(132.197, 265.397)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2j0nu"]
+size = Vector2(98.6224, 370.26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mmbu"]
-size = Vector2(1106, 100)
+size = Vector2(1171.82, 100)
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1qem5"]
 bounce = 293.3
@@ -49,22 +52,9 @@ offset_right = 2.0
 position = Vector2(18, 2573.5)
 scale = Vector2(0.476562, 40.3359)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="LeftBorder"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder/StaticBody2D"]
-position = Vector2(12.5902, 74.5662)
-shape = SubResource("RectangleShape2D_i8cai")
-
 [node name="RightBorder" type="Sprite2D" parent="."]
 position = Vector2(992, 3587)
 scale = Vector2(0.476562, 56.1875)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="RightBorder"]
-position = Vector2(-25.1799, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder/StaticBody2D"]
-position = Vector2(11.5408, 68.5716)
-shape = SubResource("RectangleShape2D_i8cai")
 
 [node name="Pins" type="Node2D" parent="."]
 
@@ -1227,29 +1217,21 @@ position = Vector2(890, 12159)
 [node name="Boundaries" type="Node2D" parent="."]
 
 [node name="Boundary1" type="Area2D" parent="Boundaries"]
-position = Vector2(2, -520)
+position = Vector2(1136, -1504)
 input_pickable = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Boundary1"]
-position = Vector2(-37, 255)
-shape = SubResource("RectangleShape2D_ybqlw")
-
-[node name="Boundary2" type="Area2D" parent="Boundaries"]
-position = Vector2(1014, -529)
-input_pickable = false
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Boundary2"]
-position = Vector2(29, 264)
+position = Vector2(-37, 224)
 shape = SubResource("RectangleShape2D_ybqlw")
 
 [node name="Player" parent="." instance=ExtResource("3_x2ajm")]
-position = Vector2(480, -136)
+position = Vector2(480, 176)
 
 [node name="Camera2D" parent="Player" index="2"]
 z_index = 10
 limit_left = 0
+limit_top = -1025
 limit_right = 1024
 limit_bottom = 13504
 editor_draw_limits = true
@@ -1506,24 +1488,16 @@ position = Vector2(329.286, -2047.14)
 scale = Vector2(0.340401, 40.1339)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D"]
-position = Vector2(11.5408, 68.5716)
-shape = SubResource("RectangleShape2D_i8cai")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/StaticBody2D"]
-position = Vector2(11.5408, 68.5716)
-shape = SubResource("RectangleShape2D_i8cai")
+position = Vector2(126.95, 51.3459)
+shape = SubResource("RectangleShape2D_4c5vb")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Background"]
 position = Vector2(-357.857, -2771.07)
 scale = Vector2(0.340401, 28.8114)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/StaticBody2D2"]
-position = Vector2(12.5902, 74.5662)
-shape = SubResource("RectangleShape2D_i8cai")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Background/StaticBody2D2"]
-position = Vector2(12.5902, 74.5662)
-shape = SubResource("RectangleShape2D_i8cai")
+position = Vector2(12.5902, 95.9413)
+shape = SubResource("RectangleShape2D_2j0nu")
 
 [node name="BG_17" type="Sprite2D" parent="Background"]
 position = Vector2(-158.571, 3.57143)
@@ -1545,10 +1519,11 @@ scale = Vector2(0.340401, 28.8114)
 position = Vector2(496, 13399)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(476, -527)
+position = Vector2(510, -1280)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(3, -33)
+position = Vector2(31.5024, -49.4559)
+rotation = -0.523599
 shape = SubResource("RectangleShape2D_2mmbu")
 
 [node name="Pin" parent="." instance=ExtResource("2_mf5l1")]
@@ -1689,7 +1664,7 @@ position = Vector2(798, 12498)
 position = Vector2(189, 12509)
 
 [node name="Bucket" parent="." instance=ExtResource("18_qr333")]
-position = Vector2(481, -90)
+position = Vector2(482, 205)
 physics_material_override = SubResource("PhysicsMaterial_1qem5")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -1707,7 +1682,6 @@ polygon = PackedVector2Array(889, 10383, 825, 10506, 773, 10562, 724, 10596, 661
 polygon = PackedVector2Array(756, 11026, 715, 11065, 704, 11101, 710, 11133, 784, 11170, 813, 11145, 816, 11079, 801, 11058)
 
 [connection signal="body_entered" from="Boundaries/Boundary1" to="." method="_on_boundary_body_entered"]
-[connection signal="body_entered" from="Boundaries/Boundary2" to="." method="_on_boundary_body_entered"]
 
 [editable path="Player"]
 [editable path="Birds/BackAndForth"]

@@ -22,7 +22,6 @@ func _ready() -> void:
 	tween.tween_property($Fader, "color", Color(0, 0, 0, 0), 1)
 	await tween.finished
 	$Fader.visible = false
-	print($Music.get_stream().get_bpm())
 
 func makeBubbles(bubbles: int) -> void:
 	var bubbleCount: int = 0
