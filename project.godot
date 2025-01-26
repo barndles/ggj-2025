@@ -14,7 +14,9 @@ config/name="Mr. Bublinko's Big Beautiful Pachinko Ballapalooza"
 config/version="1.0.0"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://gfx/Splash.png"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
@@ -24,6 +26,7 @@ GS="*res://src/GS.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=768
+window/size/resizable=false
 
 [input]
 

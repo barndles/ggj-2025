@@ -38,7 +38,7 @@ var bublinkoEscaped: Array[Array] = [
 	["I meant to fix that, sorry.", 1],
 	["Whoops, my bad", 1],
 	["NO STOP YOU'RE GONNA BREAK IT GET BACK HERE NOOOOOOOOOOOO", 2],
-	["Gonna crash this game with NO SURVIVORS", 1]
+	["Crashing this game with NO SURVIVORS!", 1.5]
 ]
 
 var bublinkoCollect: Array[Array] = [
