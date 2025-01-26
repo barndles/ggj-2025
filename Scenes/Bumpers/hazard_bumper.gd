@@ -28,7 +28,7 @@ func _on_area_2d_body_entered(body: RigidBody2D) -> void:
 	launch_vector = launch_angle * launch_power
 	
 	if body == null:
-		printerr("theres your issue man, youre dereferencing a null pointer. come on guys")
+		print("theres your issue man, youre dereferencing a null pointer. come on guys")
 		return
 	else:
 		print(launch_vector)

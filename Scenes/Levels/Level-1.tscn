@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://kwq6ink7ngo7"]
+[gd_scene load_steps=27 format=3 uid="uid://kwq6ink7ngo7"]
 
 [ext_resource type="Script" path="res://src/LevelLoad.gd" id="1_6uok5"]
 [ext_resource type="PackedScene" uid="uid://cc8v8mwusfupv" path="res://Scenes/MainUI.tscn" id="1_vcbb5"]
@@ -31,6 +31,10 @@ size = Vector2(54, 530)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mmbu"]
 size = Vector2(1106, 100)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1qem5"]
+bounce = 293.3
+absorbent = true
 
 [node name="Level-1" type="Node2D"]
 script = ExtResource("1_6uok5")
@@ -587,10 +591,6 @@ pin_type = 3
 position = Vector2(108, 10059)
 pin_type = 3
 
-[node name="Pin196" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(302, 10411)
-pin_type = 3
-
 [node name="Pin197" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(484, 10411)
 pin_type = 3
@@ -672,6 +672,7 @@ position = Vector2(788, 11811)
 pin_type = 3
 
 [node name="Cursor" parent="Pins" instance=ExtResource("4_crse7")]
+z_index = 4096
 
 [node name="BalloonLocations" type="Node2D" parent="."]
 
@@ -1675,8 +1676,35 @@ position = Vector2(798, 12034)
 [node name="HazardBumper16" parent="." instance=ExtResource("22_eip0o")]
 position = Vector2(189, 12045)
 
+[node name="HazardBumper17" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(381, 12509)
+
+[node name="HazardBumper18" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(590, 12504)
+
+[node name="HazardBumper19" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(798, 12498)
+
+[node name="HazardBumper20" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(189, 12509)
+
 [node name="Bucket" parent="." instance=ExtResource("18_qr333")]
 position = Vector2(481, -90)
+physics_material_override = SubResource("PhysicsMaterial_1qem5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(209, 10379, 246, 10356, 273, 10295, 233, 10255, 205, 10256, 191, 10280, 162, 10320, 154, 10346, 182, 10368)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(837, 10041, 790, 10072, 749, 10107, 742, 10137, 757, 10179, 823, 10261, 881, 10254, 928, 10238, 939, 10195, 939, 10111, 870, 10057)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(889, 10383, 825, 10506, 773, 10562, 724, 10596, 661, 10600, 652, 10575, 503, 10500, 389, 10461, 310, 10512, 265, 10565, 241, 10608, 231, 10658, 242, 10699, 287, 10752, 304, 10793, 335, 10816, 409, 10850, 537, 10822, 599, 10815, 647, 10783, 663, 10732, 673, 10663, 705, 10680, 784, 10688, 848, 10682, 893, 10657)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(756, 11026, 715, 11065, 704, 11101, 710, 11133, 784, 11170, 813, 11145, 816, 11079, 801, 11058)
 
 [connection signal="body_entered" from="Boundaries/Boundary1" to="." method="_on_boundary_body_entered"]
 [connection signal="body_entered" from="Boundaries/Boundary2" to="." method="_on_boundary_body_entered"]
