@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cweq440fqmltb"]
+[gd_scene load_steps=9 format=3 uid="uid://cweq440fqmltb"]
 
 [ext_resource type="Script" path="res://src/Balloon.gd" id="1_1wrn4"]
 [ext_resource type="Texture2D" uid="uid://c1oxfnljeve62" path="res://Art/Entities/Balloon_Animal_01.png" id="2_0r5dp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwn58qd65afb" path="res://Art/Entities/Balloon_Animal_03.png" id="4_hmelr"]
 [ext_resource type="Texture2D" uid="uid://c6umbfi343xsc" path="res://Art/Entities/Balloon_Animal_04.png" id="5_164ts"]
 [ext_resource type="Texture2D" uid="uid://btavut8xm7cia" path="res://gfx/balloon/balloon3.png" id="6_ew4s8"]
+[ext_resource type="AudioStream" uid="uid://7s6j3tvdkm2g" path="res://sfx/sfx/BalloonPop.ogg" id="7_u28fd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ts0u4"]
 radius = 40.7922
@@ -26,6 +27,9 @@ texture = ExtResource("2_0r5dp")
 [node name="RotateTimer" type="Timer" parent="Sprite2D"]
 wait_time = 3.5
 autostart = true
+
+[node name="Pop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_u28fd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Sprite2D/RotateTimer" to="." method="_on_rotate_timer_timeout"]

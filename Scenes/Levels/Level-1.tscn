@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dfp3ykuvdbnwy" path="res://Art/Background/BG_10.png" id="17_kqx8t"]
 [ext_resource type="Texture2D" uid="uid://2w3s7g1ldd7k" path="res://Art/Background/BG_11.png" id="18_jo116"]
 [ext_resource type="PackedScene" uid="uid://dc3j61puojuf3" path="res://Scenes/Bucket.tscn" id="18_qr333"]
-[ext_resource type="PackedScene" uid="uid://xq0kexfqv3v1" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
+[ext_resource type="PackedScene" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8cai"]
 size = Vector2(98.6224, 413.01)
@@ -1591,91 +1591,74 @@ scale = Vector2(1.21991, 1.40613)
 [node name="BackAndForth" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(596, 5753)
 
-[node name="AnimatedSprite2D" parent="BackAndForth" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
-
 [node name="BackAndForth4" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(563, 5843)
 
 [node name="AnimatedSprite2D" parent="BackAndForth4" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth5" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(725, 5618)
 
 [node name="AnimatedSprite2D" parent="BackAndForth5" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth6" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(267, 6014)
 
 [node name="AnimatedSprite2D" parent="BackAndForth6" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth7" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(360, 6074)
 
 [node name="AnimatedSprite2D" parent="BackAndForth7" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth8" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(534, 5987)
 
 [node name="AnimatedSprite2D" parent="BackAndForth8" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth9" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(201, 6790)
 
 [node name="AnimatedSprite2D" parent="BackAndForth9" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth10" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(300, 6841)
 
 [node name="AnimatedSprite2D" parent="BackAndForth10" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth11" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(426, 6784)
 
 [node name="AnimatedSprite2D" parent="BackAndForth11" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth12" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(507, 6685)
 
 [node name="AnimatedSprite2D" parent="BackAndForth12" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth13" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(393, 6619)
 
 [node name="AnimatedSprite2D" parent="BackAndForth13" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth3" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(416, 5795)
 
 [node name="AnimatedSprite2D" parent="BackAndForth3" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 frame_progress = 0.0
 
 [node name="BackAndForth2" parent="." instance=ExtResource("21_2720o")]
 position = Vector2(518, 5678)
-
-[node name="AnimatedSprite2D" parent="BackAndForth2" index="0"]
-scale = Vector2(0.0982794, 0.0982794)
 
 [connection signal="body_entered" from="Boundaries/Boundary1" to="." method="_on_boundary_body_entered"]
 [connection signal="body_entered" from="Boundaries/Boundary2" to="." method="_on_boundary_body_entered"]

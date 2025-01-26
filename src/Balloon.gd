@@ -28,13 +28,19 @@ func spriteRotate() -> void:
 
 func _on_body_entered(body: RigidBody2D) -> void:
 	if body.name == "Player":
+		$CollisionShape2D.disabled = true
 		mainUI.score += 100
 		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
+		$Pop.pitch_scale = random.randf_range(0.75, 1.25)
+		$Pop.play()
+		await get_tree().create_timer(0.25).timeout
 		if not mainUI.interrupted:
 			mainUI.introInterrupt()
 		else:
 			mainUI.bublinkoSpeak(mainUI.bublinkoCollect.pick_random())
 		mainUI.bublinkoAnger += 1
+		mainUI.score += 10
+		mainUI.get_node("Score").text = "Score: " + str(mainUI.score)
 		var finalRotate: Array = [20, -20]
 		var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT).set_parallel(true)
 		tween.tween_property($Sprite2D, "rotation_degrees", finalRotate.pick_random(), 0.5)

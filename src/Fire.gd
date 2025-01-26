@@ -9,5 +9,7 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: RigidBody2D) -> void:
 	if body == player:
-		player.queue_free()
+		player.sleeping = true
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(player, "modulate", Color(1, 1, 1, 0), 1)
 		mainUI.gameOver()
