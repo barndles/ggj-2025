@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=3 uid="uid://xq0kexfqv3v1"]
+
+[ext_resource type="Texture2D" uid="uid://b3x28jlkioi4l" path="res://Art/Entities/BG_Anims/Bubble_BirdAnimation.png" id="1_u4nmb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq4fu"]
+atlas = ExtResource("1_u4nmb")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2uo0"]
+atlas = ExtResource("1_u4nmb")
+region = Rect2(0, 1920, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4yx"]
+atlas = ExtResource("1_u4nmb")
+region = Rect2(0, 3840, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdf2u"]
+atlas = ExtResource("1_u4nmb")
+region = Rect2(0, 5760, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kjma"]
+atlas = ExtResource("1_u4nmb")
+region = Rect2(0, 7680, 1920, 1920)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86vj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq4fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2uo0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o4yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdf2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kjma")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gen8k"]
+resource_name = "back_and_forth"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(921, -26), Vector2(-984, 110)]
+}
+
+[sub_resource type="Animation" id="Animation_5yeir"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(921, -26)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b84fj"]
+_data = {
+"RESET": SubResource("Animation_5yeir"),
+"back_and_forth": SubResource("Animation_gen8k")
+}
+
+[node name="BackAndForth" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(921, -26)
+scale = Vector2(0.0982794, 0.0982794)
+sprite_frames = SubResource("SpriteFrames_86vj0")
+autoplay = "default"
+frame_progress = 0.71755
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b84fj")
+}
+autoplay = "back_and_forth"
