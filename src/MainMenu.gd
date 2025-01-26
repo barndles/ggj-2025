@@ -6,6 +6,7 @@ extends Control
 @onready var random: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	call_deferred("pivotFix")
 	$Title.rotation_degrees = -10
 	rotateTitle()
 	pulseTitle()
@@ -22,6 +23,11 @@ func _ready() -> void:
 	tween.tween_property($Fader, "color", Color(0, 0, 0, 0), 1)
 	await tween.finished
 	$Fader.visible = false
+
+func pivotFix() -> void:
+	await get_tree().physics_frame
+	%Play.pivot_offset = %Play.size / 2
+	%Quit.pivot_offset = %Quit.size / 2
 
 func makeBubbles(bubbles: int) -> void:
 	var bubbleCount: int = 0
@@ -53,7 +59,7 @@ func rotateTitle() -> void:
 	%RotateTimer.start()
 
 func pulseTitle() -> void:
-	$Title.scale = Vector2(1.15, 1.15)
+	$Title.scale = Vector2(1.1, 1.1)
 	%PulseTimer.start()
 	var tween: Tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property($Title, "scale", Vector2(1, 1), 0.37)
@@ -86,15 +92,23 @@ func _on_boundary_area_entered(area: Area2D) -> void:
 		area.queue_free()
 
 func _on_play_mouse_entered() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%Play, "scale", Vector2(1.1, 1.1), 0.25)
 	%Play.self_modulate = Color(1, 1, 1, 1)
 
 func _on_quit_mouse_entered() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%Quit, "scale", Vector2(1.1, 1.1), 0.25)
 	%Quit.self_modulate = Color(1, 1, 1, 1)
 
 func _on_play_mouse_exited() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%Play, "scale", Vector2(1, 1), 0.25)
 	%Play.self_modulate = Color(0.8, 0.8, 0.8, 1)
 
 func _on_quit_mouse_exited() -> void:
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(%Quit, "scale", Vector2(1, 1), 0.25)
 	%Quit.self_modulate = Color(0.8, 0.8, 0.8, 1)
 
 func _on_play_gui_input(event: InputEvent) -> void:

@@ -143,7 +143,7 @@ pivot_offset = Vector2(472, 88)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 bbcode_enabled = true
-text = "[font_size=72][center][font=res://gfx/fonts/SuperBakery.ttf][rainbow freq=2]MR BUBLINKO'S BIG BEAUTIFUL
+text = "[font_size=72][center][font=res://gfx/fonts/SuperBakery.ttf][rainbow freq=0.1]MR BUBLINKO'S BIG BEAUTIFUL
 PACHINKO BALLAPALOOZA"
 
 [node name="RotateTimer" type="Timer" parent="Title"]
