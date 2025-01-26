@@ -19,9 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://ds1e7k21nn4he" path="res://Art/Background/BG_09.png" id="16_tlagy"]
 [ext_resource type="Texture2D" uid="uid://dfp3ykuvdbnwy" path="res://Art/Background/BG_10.png" id="17_kqx8t"]
 [ext_resource type="Texture2D" uid="uid://2w3s7g1ldd7k" path="res://Art/Background/BG_11.png" id="18_jo116"]
-[ext_resource type="PackedScene" uid="uid://7th8hmbrp4tv" path="res://Scenes/Bucket.tscn" id="18_qr333"]
-[ext_resource type="PackedScene" uid="uid://xq0kexfqv3v1" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
-[ext_resource type="PackedScene" uid="uid://dpr0478brecxw" path="res://Scenes/Bumpers/HazardBumper.tscn" id="22_eip0o"]
+[ext_resource type="PackedScene" uid="uid://dc3j61puojuf3" path="res://Scenes/Bucket.tscn" id="18_qr333"]
+[ext_resource type="PackedScene" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
+[ext_resource type="PackedScene" uid="uid://doi6ckl81ijol" path="res://Scenes/Bumpers/HazardBumper.tscn" id="22_eip0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8cai"]
 size = Vector2(98.6224, 413.01)
@@ -1250,6 +1250,8 @@ position = Vector2(480, -136)
 z_index = 10
 limit_left = 0
 limit_right = 1024
+limit_bottom = 13504
+editor_draw_limits = true
 
 [node name="Bubble_Blower" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("7_7ms01")]
 Target = NodePath("../Player")

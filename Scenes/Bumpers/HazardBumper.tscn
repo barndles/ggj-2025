@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpr0478brecxw"]
+[gd_scene load_steps=13 format=3 uid="uid://doi6ckl81ijol"]
 
 [ext_resource type="Script" path="res://Scenes/Bumpers/hazard_bumper.gd" id="1_05vqc"]
+[ext_resource type="AudioStream" uid="uid://qp26b2d754ee" path="res://sfx/sfx/Buzzer.ogg" id="3_vcamo"]
 [ext_resource type="Texture2D" uid="uid://b4307kkf0347j" path="res://Art/Entities/Hazards/Bubble_Hazard.png" id="6_7ur6b"]
-[ext_resource type="AudioStream" uid="uid://cns58b6iw3nc" path="res://sfx/sfx/Bumper.ogg" id="7_ip1jm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yw2aa"]
 radius = 36.2215
@@ -126,8 +126,7 @@ libraries = {
 }
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_ip1jm")
-pitch_scale = 1.25
+stream = ExtResource("3_vcamo")
 
 [node name="StartTimer" type="Timer" parent="."]
 autostart = true

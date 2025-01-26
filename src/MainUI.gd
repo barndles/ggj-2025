@@ -172,9 +172,9 @@ func gameOver() -> void:
 	$GameTimer.stop()
 	$Score.visible = false
 	$Timer.visible = false
-	%BublinkoText.visible = false
+	%BublinkoText.text = ""
 	%FinalScore.text = "Final Score: " + str(score)
-	%FinalTime.text = "Final Time: " + str(minute) + ":" + str(second)
+	%FinalTime.text = "Final Time: " + str("%0*d" % [2, minute]) + ":" + str("%0*d" % [2, second])
 	$GameOverContainer.visible = true
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property($GameOverContainer, "modulate", Color(1, 1, 1, 1), 5)
