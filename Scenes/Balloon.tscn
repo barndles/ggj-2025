@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://cweq440fqmltb"]
+
+[ext_resource type="Script" path="res://src/Balloon.gd" id="1_1wrn4"]
+[ext_resource type="Texture2D" uid="uid://c1oxfnljeve62" path="res://Art/Entities/Balloon_Animal_01.png" id="2_0r5dp"]
+[ext_resource type="Texture2D" uid="uid://b4yv2a2uyl5mh" path="res://Art/Entities/Balloon_Animal_02.png" id="3_ob5f1"]
+[ext_resource type="Texture2D" uid="uid://bvwn58qd65afb" path="res://Art/Entities/Balloon_Animal_03.png" id="4_hmelr"]
+[ext_resource type="Texture2D" uid="uid://c6umbfi343xsc" path="res://Art/Entities/Balloon_Animal_04.png" id="5_164ts"]
+[ext_resource type="Texture2D" uid="uid://btavut8xm7cia" path="res://gfx/balloon/balloon3.png" id="6_ew4s8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ts0u4"]
+radius = 40.7922
+
+[node name="Balloon" type="Area2D"]
+input_pickable = false
+monitorable = false
+script = ExtResource("1_1wrn4")
+Balloon_Animals = Array[Texture2D]([ExtResource("2_0r5dp"), ExtResource("3_ob5f1"), ExtResource("4_hmelr"), ExtResource("5_164ts"), ExtResource("6_ew4s8")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ts0u4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0332031, 0.0351562)
+texture = ExtResource("2_0r5dp")
+
+[node name="RotateTimer" type="Timer" parent="Sprite2D"]
+wait_time = 3.5
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Sprite2D/RotateTimer" to="." method="_on_rotate_timer_timeout"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://digkpchiqe7vc"]
+
+[ext_resource type="Texture2D" uid="uid://1fg2m4hj6q65" path="res://gfx/Fire1.png" id="1_suxim"]
+[ext_resource type="Texture2D" uid="uid://du4rvjbn1wtk4" path="res://gfx/Fire2.png" id="2_wioxe"]
+[ext_resource type="Script" path="res://src/Fire.gd" id="3_5aeux"]
+[ext_resource type="AudioStream" uid="uid://c8dv1b3u1gjo2" path="res://sfx/Fire.ogg" id="4_a6y1s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0lqm"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_suxim")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_wioxe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xo3d"]
+size = Vector2(768, 314)
+
+[node name="Fire" type="AnimatedSprite2D"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_y0lqm")
+frame_progress = 0.0946778
+script = ExtResource("3_5aeux")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 80)
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 147)
+shape = SubResource("RectangleShape2D_1xo3d")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_a6y1s")
+volume_db = 24.0
+pitch_scale = 0.85
+autoplay = true
+parameters/looping = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

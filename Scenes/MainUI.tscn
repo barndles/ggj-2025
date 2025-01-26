@@ -1,0 +1,144 @@
+[gd_scene load_steps=12 format=3 uid="uid://cc8v8mwusfupv"]
+
+[ext_resource type="Script" path="res://src/MainUI.gd" id="1_0om4u"]
+[ext_resource type="Texture2D" uid="uid://bhrnfs1q8v02l" path="res://gfx/bublinko/happy.png" id="2_gqxed"]
+[ext_resource type="FontFile" uid="uid://dvwsl4rd8e5rt" path="res://gfx/fonts/SuperBakery.ttf" id="3_hxwla"]
+[ext_resource type="AudioStream" uid="uid://cjkbwh85rsdw0" path="res://sfx/music/groovy.ogg" id="4_wni5l"]
+[ext_resource type="AudioStream" uid="uid://bj1k5qqmaxo3l" path="res://sfx/bablinko/high/Welcome.ogg" id="12_wtyll"]
+[ext_resource type="AudioStream" uid="uid://dnho1bnaqsxlm" path="res://sfx/bablinko/high/MyNameIs.ogg" id="13_mk2v8"]
+[ext_resource type="AudioStream" uid="uid://cdiy8rabc8e43" path="res://sfx/bablinko/high/ThatsYou.ogg" id="14_168aw"]
+[ext_resource type="AudioStream" uid="uid://ddcge1ywn1qdp" path="res://sfx/bablinko/high/SeeThoseBalloonAnimals.ogg" id="15_yuk7j"]
+[ext_resource type="AudioStream" uid="uid://dlkwfcvjkm1jg" path="res://sfx/bablinko/high/LikePlease.ogg" id="16_jx8a2"]
+[ext_resource type="AudioStream" uid="uid://celep5cifckgc" path="res://sfx/bablinko/high/PowerUps.ogg" id="17_tdjyk"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_tw7dw"]
+loop = false
+fade_time = 0.0
+stream_count = 7
+stream_0 = ExtResource("12_wtyll")
+stream_1 = ExtResource("13_mk2v8")
+stream_2 = ExtResource("14_168aw")
+stream_3 = ExtResource("15_yuk7j")
+stream_4 = ExtResource("16_jx8a2")
+stream_5 = ExtResource("17_tdjyk")
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0om4u")
+
+[node name="BublinkoContainer" type="HSplitContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -192.0
+offset_right = 1032.0
+offset_bottom = -32.0
+dragger_visibility = 1
+
+[node name="Bublinko" type="TextureRect" parent="BublinkoContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_gqxed")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RotateTimer" type="Timer" parent="BublinkoContainer/Bublinko"]
+unique_name_in_owner = true
+
+[node name="BublinkoText" type="Label" parent="BublinkoContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(852, 81)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 24
+text = "Score: 0"
+vertical_alignment = 2
+
+[node name="Timer" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -48.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_hxwla")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="BalloonContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -77.9999
+offset_right = 320.0
+offset_bottom = 0.00012207
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Fader" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="IntroPhraseTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wni5l")
+volume_db = -24.453
+autoplay = true
+parameters/looping = true
+
+[node name="BublinkoSpeech" type="AudioStreamPlayer" parent="."]
+
+[node name="BublinkoSpeechIntro" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_tw7dw")
+
+[connection signal="timeout" from="BublinkoContainer/Bublinko/RotateTimer" to="." method="_on_rotate_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="timeout" from="IntroPhraseTimer" to="." method="_on_intro_phrase_timer_timeout"]

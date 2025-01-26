@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://po8yex8gsy5p"]
+
+[ext_resource type="Script" path="res://Scenes/Bumpers/pin.gd" id="1_ajidx"]
+[ext_resource type="Texture2D" uid="uid://beyvngridvxwo" path="res://Art/Entities/Pin.png" id="1_e5ei8"]
+[ext_resource type="Texture2D" uid="uid://knhp2fywyv4m" path="res://Art/Entities/hell_pin.png" id="2_wmlca"]
+[ext_resource type="Texture2D" uid="uid://cipjxfx5siw4p" path="res://Art/Entities/sun_pin.png" id="3_iakgv"]
+[ext_resource type="Texture2D" uid="uid://ntvwrpsff4hk" path="res://Art/Entities/forest_pin.png" id="4_gy67j"]
+[ext_resource type="Texture2D" uid="uid://4pw45nf83r62" path="res://Art/Entities/water_pin.png" id="4_imdfi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nd06c"]
+radius = 18.0278
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnie2"]
+radius = 22.0227
+
+[sub_resource type="Animation" id="Animation_kimqb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.0830078, 0.0830078)]
+}
+
+[sub_resource type="Animation" id="Animation_lgdv1"]
+resource_name = "pin_bonk"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.05), Vector2(0.068, 0.068), Vector2(0.05, 0.05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.837758, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w6juj"]
+_data = {
+"RESET": SubResource("Animation_kimqb"),
+"pin_bonk": SubResource("Animation_lgdv1")
+}
+
+[node name="Pin" type="StaticBody2D"]
+script = ExtResource("1_ajidx")
+sprite_textures = Array[Texture2D]([ExtResource("3_iakgv"), ExtResource("4_imdfi"), ExtResource("4_gy67j"), ExtResource("2_wmlca")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0830078, 0.0830078)
+texture = ExtResource("1_e5ei8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cnie2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w6juj")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

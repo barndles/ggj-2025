@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://d18dtbptju8jk"]
+
+[ext_resource type="Script" path="res://Scenes/Bumpers/bumper.gd" id="1_ffb7g"]
+[ext_resource type="Texture2D" uid="uid://ebif31bmap1f" path="res://Art/Entities/Bumper.png" id="2_3he4v"]
+[ext_resource type="Texture2D" uid="uid://lg5geo84dl2q" path="res://Art/Entities/Bumpers/space_bumper.png" id="2_5rb13"]
+[ext_resource type="Texture2D" uid="uid://bwfioaf2b2fes" path="res://Art/Entities/Bumpers/Cloud_Bumper.png" id="3_3h215"]
+[ext_resource type="Texture2D" uid="uid://c7qq70w453q0b" path="res://Art/Entities/Bumpers/hell_bumper.png" id="4_sxxki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw2aa"]
+radius = 36.2215
+
+[sub_resource type="Animation" id="Animation_uaiwj"]
+resource_name = "Bumper_Bonk"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.164061, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.0410156, 0.0410156), Vector2(0.071, 0.071), Vector2(0.04, 0.04)]
+}
+
+[sub_resource type="Animation" id="Animation_lj44l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.0410156, 0.0410156)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gld63"]
+_data = {
+"Bumper_Bonk": SubResource("Animation_uaiwj"),
+"RESET": SubResource("Animation_lj44l")
+}
+
+[node name="Bumper" type="Node2D"]
+script = ExtResource("1_ffb7g")
+sprite_textures = Array[Texture2D]([ExtResource("2_5rb13"), ExtResource("3_3h215"), ExtResource("2_5rb13"), ExtResource("4_sxxki")])
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yw2aa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0410156, 0.0410156)
+texture = ExtResource("2_3he4v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gld63")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

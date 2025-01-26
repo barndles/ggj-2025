@@ -1,0 +1,49 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bpurpk1lxofsu"]
+
+[ext_resource type="Texture2D" uid="uid://dj041qcxalptm" path="res://Art/Cursor/Bubble_Fan_SpriteSheet.png" id="1_n2wyl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e33fx"]
+atlas = ExtResource("1_n2wyl")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3tyq"]
+atlas = ExtResource("1_n2wyl")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nmas"]
+atlas = ExtResource("1_n2wyl")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2o5d"]
+atlas = ExtResource("1_n2wyl")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgjm6"]
+atlas = ExtResource("1_n2wyl")
+region = Rect2(0, 1024, 256, 256)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e33fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3tyq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nmas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2o5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wgjm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nmas")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]

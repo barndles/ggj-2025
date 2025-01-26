@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://be6p3tk3lo7m7"]
+
+[ext_resource type="PackedScene" uid="uid://cbonpx8nhww5l" path="res://Scenes/Player.tscn" id="1_jh4i8"]
+[ext_resource type="PackedScene" uid="uid://po8yex8gsy5p" path="res://Scenes/Bumpers/Pin.tscn" id="2_1yodp"]
+[ext_resource type="PackedScene" uid="uid://b68hqpn7toado" path="res://Scenes/bubble_blower.tscn" id="3_2nelg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nd06c"]
+radius = 24.1661
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_jh4i8")]
+position = Vector2(518, 83)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(518, 305)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(569, 300)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(619, 270)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(683, 226)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(733, 169)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(766, 106)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(784, 42)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(455, 301)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(401, 267)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(349, 231)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(304, 192)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(272, 137)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(252, 79)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(245, 15)
+shape = SubResource("CircleShape2D_nd06c")
+
+[node name="Pin" parent="." instance=ExtResource("2_1yodp")]
+
+[node name="Bubble_Blower" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("3_2nelg")]
+Target = NodePath("../Player")
+blowing_power = 1.0

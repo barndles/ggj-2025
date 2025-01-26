@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c43qrhr5lbn8x"]
+
+[ext_resource type="Script" path="res://src/Cloud.gd" id="1_bisnm"]
+[ext_resource type="Texture2D" uid="uid://cdv266dm2iunx" path="res://gfx/Cloud1.png" id="2_5ckaf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2y5oi"]
+size = Vector2(18, 18)
+
+[node name="Cloud" type="Area2D"]
+input_pickable = false
+monitoring = false
+script = ExtResource("1_bisnm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_2y5oi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_5ckaf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

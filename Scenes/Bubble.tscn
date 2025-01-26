@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbvtbdw1o6l5e"]
+
+[ext_resource type="Texture2D" uid="uid://bw7vhvj6wjmi1" path="res://gfx/bubbles/Bubble1.png" id="1_hl6d7"]
+[ext_resource type="Script" path="res://src/Bubble.gd" id="1_qyo85"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3s72s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2j6q7"]
+radius = 40.7922
+
+[node name="Bubble" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_3s72s")
+gravity_scale = 0.1
+can_sleep = false
+script = ExtResource("1_qyo85")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2j6q7")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_hl6d7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://caobgc2ah722k"]
+
+[node name="Camera" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_right = 0
+limit_smoothed = true

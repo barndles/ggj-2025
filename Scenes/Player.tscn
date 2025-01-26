@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbonpx8nhww5l"]
+
+[ext_resource type="Texture2D" uid="uid://dj2g6xcjxqa1s" path="res://Art/Entities/Player.png" id="1_71lud"]
+[ext_resource type="Script" path="res://Scenes/Mouse_Fan.gd" id="1_cb0sv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s3aon"]
+bounce = 14.19
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_at85y"]
+radius = 37.1214
+
+[node name="Player" type="RigidBody2D"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_s3aon")
+script = ExtResource("1_cb0sv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_at85y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.0429687, 0.0429687)
+texture = ExtResource("1_71lud")
