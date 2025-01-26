@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://dpr0478brecxw"]
+
+[ext_resource type="Script" path="res://Scenes/Bumpers/hazard_bumper.gd" id="1_05vqc"]
+[ext_resource type="Texture2D" uid="uid://b4307kkf0347j" path="res://Art/Entities/Hazards/Bubble_Hazard.png" id="6_7ur6b"]
+[ext_resource type="AudioStream" uid="uid://cns58b6iw3nc" path="res://sfx/sfx/Bumper.ogg" id="7_ip1jm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yw2aa"]
+radius = 36.2215
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdjnq"]
+atlas = ExtResource("6_7ur6b")
+region = Rect2(0, 0, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4t73"]
+atlas = ExtResource("6_7ur6b")
+region = Rect2(0, 1920, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmd2f"]
+atlas = ExtResource("6_7ur6b")
+region = Rect2(0, 3840, 1920, 1920)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hrkm"]
+atlas = ExtResource("6_7ur6b")
+region = Rect2(0, 5760, 1920, 1920)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78w86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdjnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4t73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmd2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hrkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4t73")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="Animation" id="Animation_uaiwj"]
+resource_name = "Bumper_Bonk"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.0410156, 0.0410156), Vector2(0.071, 0.071), Vector2(0.04, 0.04)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.164061, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lj44l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.0410156, 0.0410156)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gld63"]
+_data = {
+"Bumper_Bonk": SubResource("Animation_uaiwj"),
+"RESET": SubResource("Animation_lj44l")
+}
+
+[node name="Bumper" type="Node2D"]
+script = ExtResource("1_05vqc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yw2aa")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.0410156, 0.0410156)
+sprite_frames = SubResource("SpriteFrames_78w86")
+frame_progress = 0.830283
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gld63")
+}
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_ip1jm")
+pitch_scale = 1.25
+
+[node name="StartTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

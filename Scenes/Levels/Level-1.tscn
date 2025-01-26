@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://kwq6ink7ngo7"]
+[gd_scene load_steps=26 format=3 uid="uid://kwq6ink7ngo7"]
 
 [ext_resource type="Script" path="res://src/LevelLoad.gd" id="1_6uok5"]
 [ext_resource type="PackedScene" uid="uid://cc8v8mwusfupv" path="res://Scenes/MainUI.tscn" id="1_vcbb5"]
@@ -19,8 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://ds1e7k21nn4he" path="res://Art/Background/BG_09.png" id="16_tlagy"]
 [ext_resource type="Texture2D" uid="uid://dfp3ykuvdbnwy" path="res://Art/Background/BG_10.png" id="17_kqx8t"]
 [ext_resource type="Texture2D" uid="uid://2w3s7g1ldd7k" path="res://Art/Background/BG_11.png" id="18_jo116"]
-[ext_resource type="PackedScene" uid="uid://dc3j61puojuf3" path="res://Scenes/Bucket.tscn" id="18_qr333"]
-[ext_resource type="PackedScene" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
+[ext_resource type="PackedScene" uid="uid://7th8hmbrp4tv" path="res://Scenes/Bucket.tscn" id="18_qr333"]
+[ext_resource type="PackedScene" uid="uid://xq0kexfqv3v1" path="res://Scenes/back_and_forth.tscn" id="21_2720o"]
+[ext_resource type="PackedScene" uid="uid://dpr0478brecxw" path="res://Scenes/Bumpers/HazardBumper.tscn" id="22_eip0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8cai"]
 size = Vector2(98.6224, 413.01)
@@ -494,10 +495,6 @@ pin_type = 2
 position = Vector2(383, 7779)
 pin_type = 2
 
-[node name="Pin170" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(302, 9347)
-pin_type = 3
-
 [node name="Pin171" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(484, 9347)
 pin_type = 3
@@ -534,10 +531,6 @@ pin_type = 3
 position = Vector2(484, 9699)
 pin_type = 3
 
-[node name="Pin180" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(684, 9699)
-pin_type = 3
-
 [node name="Pin181" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(889, 9699)
 pin_type = 3
@@ -556,10 +549,6 @@ pin_type = 3
 
 [node name="Pin185" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(583, 9523)
-pin_type = 3
-
-[node name="Pin186" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(788, 9523)
 pin_type = 3
 
 [node name="Pin187" parent="Pins" instance=ExtResource("2_mf5l1")]
@@ -618,10 +607,6 @@ pin_type = 3
 position = Vector2(108, 10411)
 pin_type = 3
 
-[node name="Pin201" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(201, 10235)
-pin_type = 3
-
 [node name="Pin202" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(383, 10235)
 pin_type = 3
@@ -648,10 +633,6 @@ pin_type = 3
 
 [node name="Pin217" parent="Pins" instance=ExtResource("2_mf5l1")]
 position = Vector2(201, 11099)
-pin_type = 3
-
-[node name="Pin218" parent="Pins" instance=ExtResource("2_mf5l1")]
-position = Vector2(383, 11099)
 pin_type = 3
 
 [node name="Pin219" parent="Pins" instance=ExtResource("2_mf5l1")]
@@ -1393,21 +1374,9 @@ position = Vector2(897, 11267)
 pin_type = 3
 launch_power = 100.0
 
-[node name="Bumper21" parent="Bumpers" instance=ExtResource("5_ltrgl")]
-z_index = 1
-position = Vector2(688, 11267)
-pin_type = 3
-launch_power = 100.0
-
 [node name="Bumper22" parent="Bumpers" instance=ExtResource("5_ltrgl")]
 z_index = 1
 position = Vector2(479, 11267)
-pin_type = 3
-launch_power = 100.0
-
-[node name="Bumper23" parent="Bumpers" instance=ExtResource("5_ltrgl")]
-z_index = 1
-position = Vector2(293, 11267)
 pin_type = 3
 launch_power = 100.0
 
@@ -1582,98 +1551,145 @@ shape = SubResource("RectangleShape2D_2mmbu")
 [node name="Pin" parent="." instance=ExtResource("2_mf5l1")]
 position = Vector2(484, 528)
 
-[node name="Bucket" parent="." instance=ExtResource("18_qr333")]
-top_level = true
-position = Vector2(483, -62)
-rotation = 0.000393565
-scale = Vector2(1.21991, 1.40613)
+[node name="Birds" type="Node2D" parent="."]
 
-[node name="BackAndForth" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(596, 5753)
 
-[node name="BackAndForth4" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth4" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(563, 5843)
 
-[node name="AnimatedSprite2D" parent="BackAndForth4" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth4" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth5" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth5" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(725, 5618)
 
-[node name="AnimatedSprite2D" parent="BackAndForth5" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth5" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth6" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth6" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(267, 6014)
 
-[node name="AnimatedSprite2D" parent="BackAndForth6" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth6" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth7" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth7" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(360, 6074)
 
-[node name="AnimatedSprite2D" parent="BackAndForth7" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth7" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth8" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth8" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(534, 5987)
 
-[node name="AnimatedSprite2D" parent="BackAndForth8" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth8" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth9" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth9" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(201, 6790)
 
-[node name="AnimatedSprite2D" parent="BackAndForth9" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth9" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth10" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth10" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(300, 6841)
 
-[node name="AnimatedSprite2D" parent="BackAndForth10" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth10" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth11" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth11" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(426, 6784)
 
-[node name="AnimatedSprite2D" parent="BackAndForth11" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth11" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth12" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth12" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(507, 6685)
 
-[node name="AnimatedSprite2D" parent="BackAndForth12" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth12" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth13" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth13" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(393, 6619)
 
-[node name="AnimatedSprite2D" parent="BackAndForth13" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth13" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth3" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth3" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(416, 5795)
 
-[node name="AnimatedSprite2D" parent="BackAndForth3" index="0"]
+[node name="AnimatedSprite2D" parent="Birds/BackAndForth3" index="0"]
 frame_progress = 0.0
 
-[node name="BackAndForth2" parent="." instance=ExtResource("21_2720o")]
+[node name="BackAndForth2" parent="Birds" instance=ExtResource("21_2720o")]
 position = Vector2(518, 5678)
+
+[node name="HazardBumper" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(236, 6326)
+
+[node name="HazardBumper2" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(766, 6156)
+
+[node name="HazardBumper3" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(522, 6573)
+
+[node name="HazardBumper4" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(203, 7741)
+
+[node name="HazardBumper5" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(883, 7600)
+
+[node name="HazardBumper6" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(201, 10239)
+
+[node name="HazardBumper7" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(682, 9700)
+
+[node name="HazardBumper8" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(801, 9529)
+
+[node name="HazardBumper9" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(296, 9350)
+
+[node name="HazardBumper10" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(390, 11105)
+
+[node name="HazardBumper11" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(303, 11276)
+
+[node name="HazardBumper12" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(697, 11271)
+
+[node name="HazardBumper13" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(381, 12045)
+
+[node name="HazardBumper14" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(590, 12040)
+
+[node name="HazardBumper15" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(798, 12034)
+
+[node name="HazardBumper16" parent="." instance=ExtResource("22_eip0o")]
+position = Vector2(189, 12045)
+
+[node name="Bucket" parent="." instance=ExtResource("18_qr333")]
+position = Vector2(481, -90)
 
 [connection signal="body_entered" from="Boundaries/Boundary1" to="." method="_on_boundary_body_entered"]
 [connection signal="body_entered" from="Boundaries/Boundary2" to="." method="_on_boundary_body_entered"]
 
 [editable path="Player"]
-[editable path="BackAndForth"]
-[editable path="BackAndForth4"]
-[editable path="BackAndForth5"]
-[editable path="BackAndForth6"]
-[editable path="BackAndForth7"]
-[editable path="BackAndForth8"]
-[editable path="BackAndForth9"]
-[editable path="BackAndForth10"]
-[editable path="BackAndForth11"]
-[editable path="BackAndForth12"]
-[editable path="BackAndForth13"]
-[editable path="BackAndForth3"]
-[editable path="BackAndForth2"]
+[editable path="Birds/BackAndForth"]
+[editable path="Birds/BackAndForth4"]
+[editable path="Birds/BackAndForth5"]
+[editable path="Birds/BackAndForth6"]
+[editable path="Birds/BackAndForth7"]
+[editable path="Birds/BackAndForth8"]
+[editable path="Birds/BackAndForth9"]
+[editable path="Birds/BackAndForth10"]
+[editable path="Birds/BackAndForth11"]
+[editable path="Birds/BackAndForth12"]
+[editable path="Birds/BackAndForth13"]
+[editable path="Birds/BackAndForth3"]
+[editable path="Birds/BackAndForth2"]
